@@ -3,9 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "create-react-class": "^15.6.3",
     "react": "^16.6.3",
+    "react-autocomplete": "^1.8.1",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-fontawesome": "^1.6.1",
+    "react-google-autocomplete": "^1.0.18",
+    "react-scripts": "2.1.1",
+    "react-select": "^2.1.2",
+    "react-toastify": "^4.4.3",
+    "react-toasts": "^2.0.14",
+    "react-tooltip": "^3.9.0",
+    "reactstrap": "^6.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
