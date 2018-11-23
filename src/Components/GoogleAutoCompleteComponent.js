@@ -10,19 +10,18 @@ class GoogleAutoCompleteComponent extends Component {
         }
     }
 
-
     render() {
         const{type,message}=this.props;
         return (
 
             <div style={{padding:"1em"}}>
                 <GoogleAutoComplete
-                    style={{width: '40%'}}
+                    style={{width: '20%'}}
                     onPlaceSelected={(place) => {
                         console.log(place);
                     }}
                     types={['(regions)']}
-                    componentRestrictions={{country: "ru"}}
+                    // componentRestrictions={{country: "ru"}}
                 />
             </div>
 

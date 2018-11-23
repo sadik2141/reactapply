@@ -9,6 +9,8 @@ import * as serviceWorker from './serviceWorker';
 // import DropDownComponent from "./Components/DropDownComponent";
 // import AutoCompleteComponent from "./Components/AutoCompleteComponent";
 import GoogleAutoComplete from "./Components/GoogleAutoCompleteComponent";
+// import HeaderComponent from "./Components/HeaderComponent";
+// import FooterComponent from "./Components/FooterComponent";
 ReactDOM.render(<GoogleAutoComplete />, document.getElementById('root'));
 
 
