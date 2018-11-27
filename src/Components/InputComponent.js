@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import UiComponent from './UiComponent';
 import { Popover, PopoverHeader, PopoverBody, Form, FormGroup, Input ,Tooltip } from 'reactstrap';
 import '../App.css'
 class InputComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name:'',
+            email:'',
             type: '',
             placeholder:'',
             id:'',
@@ -14,7 +13,16 @@ class InputComponent extends Component {
             style:{},
             classes:{},
             popoverOpen:false,
-            tooltipOpen: false
+            tooltipOpen: false,
+            popoverTittle:'',
+            popoverBody:'',
+            tooltipMessage:'',
+            popoverPlacement:'',
+            tooltipPlacement:'',
+            popoverflag:false,
+            tooltipflag:false,
+            validateType:''
+
         }
         this.toggletooltip = this.toggletooltip.bind(this)
         this.toggle = this.toggle.bind(this)
@@ -38,8 +46,8 @@ class InputComponent extends Component {
         return isNaN(value) ? false : true;
     }
 
-    validate = (event, stateName, type, stateNameEqualTo) => {
-
+        validate = (event, type, stateNameEqualTo) => {
+        console.log(this.setState({email:event.target.value}));
         switch (type) {
             case "length":
                 if (this.verifyLength(event.target.value, stateNameEqualTo)) {
@@ -84,27 +92,33 @@ class InputComponent extends Component {
         });
     }
     render() {
-        const{type,placeholder,id,size,style,classes}=this.props;
+        const{type,placeholder,id,name,size,style,classes,popoverTittle,popoverBody,tooltipMessage,
+              popoverPlacement, tooltipPlacement,popoverflag,tooltipflag,validateType}=this.props;
+        var ser=this.state+'.'+name;
         return (
             <Form inline>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                    <Input type="email"
-                           name="name"
-                           id="name"
-                           placeholder="with a placeholder"
-                           onChange={ event =>this.validate(event,"email", "email", 0)}
-                           value={this.state.name}
+                    <Input type={type}
+                           name={name}
+                           id={id}
+                           placeholder={placeholder}
+                           onChange={ event =>this.validate(event, {validateType}, 0)}
+                           // value={this.state.email}
                            onClick={this.toggle}
                     />
 
                 </FormGroup>
-                <Popover placement="right" isOpen={this.state.popoverOpen} target="name" toggle={this.toggle}>
-                    <PopoverHeader>Popover Title</PopoverHeader>
-                    <PopoverBody>Popover</PopoverBody>
+                { popoverflag == true ?
+                <Popover placement={popoverPlacement} isOpen={this.state.popoverOpen} target={name} toggle={this.toggle}>
+                    <PopoverHeader>{popoverTittle}</PopoverHeader>
+                    <PopoverBody>{popoverBody}</PopoverBody>
                 </Popover>
-                <Tooltip placement="right" isOpen={this.state.tooltipOpen} target="name" toggle={this.toggletooltip}>
-                    Hello world!
+                    :null }
+                { tooltipflag == true ?
+                <Tooltip placement={tooltipPlacement} isOpen={this.state.tooltipOpen} target={name} toggle={this.toggletooltip}>
+                    {tooltipMessage}
                 </Tooltip>
+                    :null}
             </Form>
 
 

@@ -1,46 +1,51 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import '../App.css';
-import AutoComplete from "react-autocomplete";
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-];
+
 class DropDownComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
             selectedOption: null,
+            defValue: 0,
             size:'',
+            selectData:{},
             classes:{},
-            style:{}
+            style:{},
         }
     }
-    handleChange = (selectedOption) => {
+    setSelected = (selectedOption) => {
         this.setState({ selectedOption });
         console.log(`Option selected:`, selectedOption);
     }
 
-
+    // componentDidMount() {
+    //     if (this.props.staticData === null || this.props.staticData === undefined) {
+    //         this.getData();
+    //     } else {
+    //         this.setState({
+    //             selectData: this.props.staticData
+    //         });
+    //     }
+    // }
     render() {
         const { selectedOption } = this.state;
-        const{data,size,style,classes}=this.props;
+        const{selectData,size,style,classes,defultval}=this.props;
+        let options = this.props.selectData.map(function (a) {
+            return {id:a.id ,value: a.value, label: a.label };
+        })
         return (
 
             <div style={{padding:"1em",width :'20%' }} >
                 <Select
                     value={selectedOption}
-                    onChange={this.handleChange}
-                    inputProps={{ style: { width: '20%'}}}
-                    isMulti
+                    onChange={this.setSelected}
+                    // inputProps={{ style: { width: '20%'}}}
                     options={options}
-                    styles={{width :'20%'}}
+                    // styles={{width :'20%'}}
 
                 />
             </div>
-
-
         );
     }
 }

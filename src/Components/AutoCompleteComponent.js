@@ -6,7 +6,8 @@ class AutoCompleteComponent extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            value: '',
+            AutoCompleteData:[],
+            placeholder: '',
         }
     }
     verifyLength(value, length) {
@@ -62,15 +63,14 @@ class AutoCompleteComponent extends Component {
     }
 
     render() {
-        const{data,placeholder}=this.props;
+        const{AutoCompleteData,placeholder}=this.props;
+        let transformedData = Object.values(AutoCompleteData).map((a)=>{
+            a.label = a.id; return a;
+        })
         return (
             <div style={{padding:"1em"}} >
             <AutoComplete
-                items={[
-                    { id: 'foo', label: 'foo' },
-                    { id: 'bar', label: 'bar' },
-                    { id: 'baz', label: 'baz' },
-                ]}
+                items={transformedData}
                 shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
                 getItemValue={item => item.label}
                 renderItem={(item, highlighted) =>
