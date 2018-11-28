@@ -6,21 +6,35 @@ class GoogleMapsComponent extends Component {
         super(props);
         this.state = {
             classes:{},
-            type: '',
-            Placeholder:'',
+            gPlaceholder:'',
             size:'',
-            styless:{}
+            styless:{},
+            formatted_address:'',
+            lat:'',
+            lng:''
         }
+    }
+    getSelectedPlace(place){
+        this.setState({
+            formatted_address: place.formatted_address,
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng()
+        });
+        console.log(this.state.formatted_address);
+        console.log(this.state.lat);
+        console.log(this.state.lng);
     }
 
     render() {
-        const{type,classes,Placeholder,size,styless}=this.props;
+        const{classes,gPlaceholder,size,styless}=this.props;
         return (
 
             <div style={{padding:"1em"}}>
                 <GoogleAutoComplete
-                    style={{width: '20%'}}
+                    placeholder={gPlaceholder}
+                    style={styless}
                     onPlaceSelected={(place) => {
+                        this.getSelectedPlace(place);
                     }}
                     types={['(regions)']}
                     // componentRestrictions={{country: "ru"}}

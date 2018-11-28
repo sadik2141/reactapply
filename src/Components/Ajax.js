@@ -63,11 +63,11 @@ var Ajax;
                         }
                     }
                 };
-                console.log(options.url);
+                // console.log(options.url);
                 http.open(options.method, options.url, options.async);
                 http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 http.setRequestHeader("Access-Control-Allow-Origin","*");
-                console.log(options.param);
+                // console.log(options.param);
                 http.send(options.param);
             };
             this.post = function (url, successCallback, data, errorCallback) {

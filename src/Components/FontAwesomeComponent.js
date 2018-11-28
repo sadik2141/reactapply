@@ -5,21 +5,23 @@ class FontAwesomeComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            message:'',
-            type: '',
+            size:'',
+            classes: {},
+            styless:{},
+            name:''
         }
     }
 
 
     render() {
-        const{type,message}=this.props;
+        const{classes,size,styless,name}=this.props;
         return (
 
             <div style={{padding:"1em"}}>
                 <FontAwesome
-                    className='fal fa-camera-retro'
-                    name='rocket'
-                    size='2x'
+                    className={classes}
+                    name={name}
+                    size={size}
                 />
             </div>
 

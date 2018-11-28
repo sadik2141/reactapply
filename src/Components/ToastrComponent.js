@@ -8,20 +8,29 @@ class ToastrComponent extends Component {
         this.state = {
             messages:'',
             mestype: '',
-            text:''
+            text:'',
         }
     }
 
 
     render() {
         const{mestype,messages}=this.props;
-        console.log(mestype+"  "+messages);
-        var text="ToastStore."+mestype+'("'+messages+'")';
-        console.log(text);
+
         return (
             <div style={{padding:"1em"}}>
-                <button onClick={() => text}>Click me !</button>
-                {/*<button onClick={() =>ToastStore.error("sucesssssssssssssssssssssssssssssssssssss") }>Click me !</button>*/}
+                {(mestype==="success")?
+                    <button onClick={() =>ToastStore.success(messages) }>Click me !</button>
+                    :null}
+
+                {(mestype==="error")?
+                    <button onClick={() =>ToastStore.error(messages) }>Click me !</button>
+                    :null}
+                {(mestype==="warning")?
+                    <button onClick={() =>ToastStore.warning(messages) }>Click me !</button>
+                    :null}
+                {(mestype==="info")?
+                    <button onClick={() =>ToastStore.info(messages) }>Click me !</button>
+                    :null}
                 <ToastContainer store={ToastStore} position={ToastContainer.POSITION.TOP_CENTER} lightBackground />
             </div>
 

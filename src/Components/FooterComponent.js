@@ -15,7 +15,7 @@ class FooterComponent extends Component {
                             <div className="col-lg-2  "></div>
                             <div className="col-lg-6 text-center green-footer-text">
                                 Copyright © 2018 Net Matrix Solutions, Inc. <span>&nbsp; | &nbsp;</span>
-                                {feedbackflag==true ?
+                                {feedbackflag===true ?
                                     <a href="#">Feedback </a>
                                     :null}
                             </div>

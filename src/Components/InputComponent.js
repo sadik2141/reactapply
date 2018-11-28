@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Popover, PopoverHeader, PopoverBody, Form, FormGroup, Input ,Tooltip } from 'reactstrap';
+import {validate} from "./Common";
 import '../App.css'
 class InputComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email:'',
+            name:'',
             type: '',
             placeholder:'',
             id:'',
             size:{},
-            style:{},
+            styless:{},
             classes:{},
             popoverOpen:false,
             tooltipOpen: false,
@@ -21,7 +22,8 @@ class InputComponent extends Component {
             tooltipPlacement:'',
             popoverflag:false,
             tooltipflag:false,
-            validateType:''
+            validateType:'',
+            value:''
 
         }
         this.toggletooltip = this.toggletooltip.bind(this)
@@ -29,57 +31,7 @@ class InputComponent extends Component {
 
     }
 
-    verifyLength(value, length) {
-        if (value.length > length) {
-            return true;
-        }
-        return false;
-    }
-    verifyEmail(value) {
-        var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (emailRex.test(value)) {
-            return true;
-        }
-        return false;
-    }
-    veritfyInt(value) {
-        return isNaN(value) ? false : true;
-    }
 
-        validate = (event, type, stateNameEqualTo) => {
-        console.log(this.setState({email:event.target.value}));
-        switch (type) {
-            case "length":
-                if (this.verifyLength(event.target.value, stateNameEqualTo)) {
-                    this.setState({name:event.target.value})
-                    console.log("text validate sucess");
-                } else {
-                    this.setState({name:event.target.value})
-                    console.log("text validate false");
-                }
-                break;
-            case "email":
-                if (this.verifyEmail(event.target.value)) {
-                    this.setState({name:event.target.value})
-                    console.log("email validate sucess");
-                } else {
-                    this.setState({name:event.target.value})
-                    console.log("email validate false");
-                }
-                break;
-            case "int":
-                if (this.veritfyInt(event.target.value)) {
-                    this.setState({name:event.target.value})
-                    console.log("int validate sucess");
-                } else {
-                    this.setState({name:event.target.value})
-                    console.log("int validate false");
-                }
-                break;
-            default:
-                break;
-        }
-    }
 
     toggle() {
         this.setState({
@@ -91,10 +43,13 @@ class InputComponent extends Component {
             tooltipOpen: !this.state.tooltipOpen
         });
     }
+
+    // componentDidUpdate (){
+    //     this.setState({name:this.state.value});
+    // }
     render() {
-        const{type,placeholder,id,name,size,style,classes,popoverTittle,popoverBody,tooltipMessage,
+        const{type,placeholder,id,name,size,styless,classes,popoverTittle,popoverBody,tooltipMessage,
               popoverPlacement, tooltipPlacement,popoverflag,tooltipflag,validateType}=this.props;
-        var ser=this.state+'.'+name;
         return (
             <Form inline>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
@@ -102,9 +57,10 @@ class InputComponent extends Component {
                            name={name}
                            id={id}
                            placeholder={placeholder}
-                           onChange={ event =>this.validate(event, {validateType}, 0)}
-                           // value={this.state.email}
-                           onClick={this.toggle}
+                           onChange={event => validate(event,id,validateType,0)}
+                             // value={''}
+                            onClick={this.toggle}
+                           style={styless}
                     />
 
                 </FormGroup>

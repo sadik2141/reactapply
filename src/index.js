@@ -19,10 +19,13 @@ import Ajax from "./Components/Ajax";
 var service = new Ajax.Service();
 var customerUrl = "control.php";
 service.post('getAllDropDowns', function (d) {
-    console.log(d);
+    // console.log(d);
 });
+function getAllJobs(){
+console.log("enterrrrrrrrrrr");
+}
 const selectData = [
-    {id:0,    value:'0',            label:'selectData'},
+    {id:0,    value:'0',       label:'selectData'},
     {id:1, value: 'chocolate', label: 'Chocolate' },
     {id:2, value: 'strawberry', label: 'Strawberry' },
     { id:3,value: 'vanilla', label: 'Vanilla' }
@@ -33,7 +36,7 @@ const autoSelectData=[
     { id: 'baz', label: 'baz' },
 ];
 const menuData=[
-    { id: 'Jobs', label: 'getAllJobs();' },
+    { id: 'Jobs', label: getAllJobs },
 ];
 class AllComponent extends Component{
     render(){
@@ -41,10 +44,10 @@ class AllComponent extends Component{
             <div>
             <HeaderComponent logo={nmsLogo} menuData={menuData}/>
             <InputComponent
-            type={"email"}
-            id={"email"}
-            name={"email"}
-            placeholder={"Email"}
+            type={"text"}
+            id={"name"}
+            name={"name"}
+            placeholder={"Name"}
             popoverTittle={"popover"}
             popoverBody={"popoverBody"}
             tooltipMessage={"Tooltip"}
@@ -52,13 +55,18 @@ class AllComponent extends Component{
             tooltipPlacement={"right"}
             popoverflag={false}
             tooltipflag={false}
-            validateType={"email"}
+            validateType={"length"}
+            styless={{width:"100%"}}
+            classess="col"
+            // val={"test"}
             />
-            <DropDownComponent selectData={selectData} defultval={"SelelecData"}/>
-            <ToastrComponent messages={"Toastrmessage"} mestype={"error"}/>
-            <AutoCompleteComponent AutoCompleteData={autoSelectData} placeholder={"Enter Data"}/>
+
+            <DropDownComponent selectData={selectData}/>
+            <ToastrComponent messages="Toastrmessage" mestype="info"/>
+            <AutoCompleteComponent AutoCompleteData={autoSelectData} aplaceholder="Enter Data"/>
+            <GoogleMapsComponent styless={{width: '20%'}} gPlaceholder={"Google Location"}/>
             <FooterComponent feedbackflag={true}/>
-            <FontAwesomeComponent/>
+            <FontAwesomeComponent classess={"fal fa-camera-retro"} size={"2x"} name={"rocket"}/>
             </div>
         );
 }

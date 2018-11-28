@@ -7,11 +7,10 @@ class DropDownComponent extends Component {
         super(props);
         this.state = {
             selectedOption: null,
-            defValue: 0,
             size:'',
             selectData:{},
             classes:{},
-            style:{},
+            styless:{},
         }
     }
     setSelected = (selectedOption) => {
@@ -19,31 +18,24 @@ class DropDownComponent extends Component {
         console.log(`Option selected:`, selectedOption);
     }
 
-    // componentDidMount() {
-    //     if (this.props.staticData === null || this.props.staticData === undefined) {
-    //         this.getData();
-    //     } else {
-    //         this.setState({
-    //             selectData: this.props.staticData
-    //         });
-    //     }
-    // }
+    componentDidMount() {
+const{selectData}=this.props;
+this.setState({selectedOption:selectData[0]});
+    }
     render() {
         const { selectedOption } = this.state;
-        const{selectData,size,style,classes,defultval}=this.props;
-        let options = this.props.selectData.map(function (a) {
-            return {id:a.id ,value: a.value, label: a.label };
-        })
+        const{selectData,size,styless,classes}=this.props;
+        // let options = this.props.selectData.map(function (a) {
+        //     return {id:a.id ,value: a.value, label: a.label };
+        // })
         return (
 
             <div style={{padding:"1em",width :'20%' }} >
                 <Select
                     value={selectedOption}
                     onChange={this.setSelected}
-                    // inputProps={{ style: { width: '20%'}}}
-                    options={options}
-                    // styles={{width :'20%'}}
-
+                    options={selectData}
+                    style={styless}
                 />
             </div>
         );
